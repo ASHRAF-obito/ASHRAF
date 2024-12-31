@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Sources</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .news-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+
+    .news-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .news-title:hover {
+      text-decoration: underline;
+    }
+
+    .news-description {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    .news-source {
+      font-size: 12px;
+      color: #999;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>News Sources</h1>
+    <div id="news-container"></div>
+  </div>
+
+  <script>
+    const apiKey = "0c6b7b94f5b149509cef0769124a4841"; // Replace with your NewsAPI key
+    const apiUrl = `https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`;
+
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+   
+          const newsContainer = document.getElementById('news-container');
+          newsContainer.innerHTML = data.sources
+            .map(source => `
+              <div class="news-item">
+                <a href="${source.url}" target="_blank" class="news-title">${source.name}</a>
+                <p class="news-description">${source.description || "No description available."}</p>
+                <p class="news-source">Category: ${source.category} | Language: ${source.language.toUpperCase()}</p>
+              </div>
+            `)
+            .join('');   
+         
+      })
+      .catch(error => {
+        console.error("Error fetching news sources:", error);
+        document.getElementById('news-container').innerHTML = "<p>Error fetching news.</p>";
+      });
+  </script>
+</body>
+</html>
