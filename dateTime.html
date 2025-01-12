@@ -8,8 +8,8 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #ffefd5;
+            font-family: sans-serif;
+            background-color:black;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,19 +20,22 @@
         .container {
             text-align: center;
             padding: 20px;
-            background-color: #fff;
+            background-color:grey;
             border-radius: 15px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 1 5px 10px rgba(1, 2, 1, 0.2);
+            border:2px solid white;
+            
         }
 
         .time {
             font-size: 4rem;
-            color: #ff4500;
+            color: neongreen;
+            justify-content:center;
         }
 
         .date {
             font-size: 2rem;
-            color: #32cd32;
+            color:neongreen;
         }
 
         @media (max-width: 768px) {
@@ -44,10 +47,19 @@
                 font-size: 1.5rem;
             }
         }
+        #ash{
+            color:grey;
+            border: 2px solid white;
+        }
+        
     </style>
 </head>
 
 <body>
+    <h2 id="ash">
+LIVE DATE AND TIME
+</h2>
+
     <div class="container">
         <p id="time" class="time"></p>
         <p id="date" class="date"></p>
